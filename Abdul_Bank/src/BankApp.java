@@ -21,10 +21,6 @@ public class BankApp extends Application {
     private Label AbdulHeader;
     private ImageView moneyLogo;
     private Label messageLabel;
-    private Button createButton;
-    private Button backButton;
-    private Label scene2label;
-    private Button loginButton;
 
     private static final String PASSWORD = "Abdul_1762";
 
@@ -59,31 +55,62 @@ public class BankApp extends Application {
         }
 
 
-        //Scene1 components
-        Pane root2 = new Pane();
-        Scene scene2 = new Scene(root2, 500, 300);
-        Button backButton = new Button("Go back");
+    
+        //Scene_question_1 components
 
-
-        //Scene2 components
-        Pane root1 = new Pane();
-        Scene scene1 = new Scene(root1,500, 300);
+        Pane root_question = new Pane();
+        Scene scene1_question = new Scene(root_question,500, 300);
         Button createButton = new Button("Create an Account");
-        Label scene2label= new Label("Hello");
-        root1.getChildren().addAll(createButton, scene2label);
+        Button loginButton_scene = new Button("Login Account");
+        Label scene2label= new Label("Do you have an account ?");
 
-        //Scene3 components
-        Pane root3 = new Pane();
-        Scene scene3 = new Scene(root3, 500, 300);
+
+        createButton.relocate(200, 150);
+        loginButton_scene.relocate(100, 150);
+        scene2label.relocate(125, 200);
+
+        root_question.getChildren().addAll(createButton, loginButton_scene, scene2label);
+
+
+        //Scene_log_into_account_2 components
+        Pane root_log_account = new Pane();
+        Scene scene_log_account = new Scene(root_log_account, 500, 300);
+        Button login_button = new Button("Login");
+
+        login_button.relocate(125, 200);
+
+        root_log_account.getChildren().addAll(login_button);
+
+        
+
+        //Scene_create_account_3 components
+        Pane root_create_account = new Pane();
+        Scene scene_create_account = new Scene(root_create_account, 500, 300);
+        Button account_button = new Button("Create new Account");
+
+        root_create_account.getChildren().addAll(account_button);
+
+        account_button.relocate(125, 200);
+       
+        
+
+        //Scene_show_account_4 components
+        Pane root_show_account = new Pane();
+        Scene scene_show_account = new Scene(root_show_account, 500, 300);
 
 
         //Switching scenes
-        createButton.setOnAction(e -> stage.setScene(scene1));
-        backButton.setOnAction(e -> stage.setScene(scene2));
+        createButton.setOnAction(e -> stage.setScene(scene_create_account));
+
+        login_button.setOnAction(e -> stage.setScene(scene_show_account));
+
+        loginButton_scene.setOnAction(e -> stage.setScene(scene_log_account));
+
+        account_button.setOnAction(e -> stage.setScene(scene_log_account));
 
 
         stage.setTitle("Abdul's Bank");
-        stage.setScene(scene1);
+        stage.setScene(scene1_question);
 
         account = new BankAccount("Abdul");
         appTitle = new Label("Balance: $0.00");
@@ -104,7 +131,7 @@ public class BankApp extends Application {
         moneyLogo.setFitWidth(150);
         moneyLogo.relocate(350,150);
 
-        root2.getChildren().addAll(appTitle, depositButton, withdrawButton, exitButton, inputBox, bankLogo, AbdulHeader, moneyLogo, messageLabel, backButton);
+        root_show_account.getChildren().addAll(appTitle, depositButton, withdrawButton, exitButton, inputBox, bankLogo, AbdulHeader, moneyLogo, messageLabel);
 
         appTitle.relocate(150, 125);
         appTitle.setFont(new Font("System", 20));
@@ -121,7 +148,7 @@ public class BankApp extends Application {
         depositButton.setOnAction(this::deposit);
         withdrawButton.setOnAction(this::withdraw);
         exitButton.setOnAction(e -> System.exit(0));
-        backButton.relocate(230, 225);
+
 
 
 
